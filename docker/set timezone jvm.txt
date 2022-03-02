@@ -1,0 +1,25 @@
+environment:
+      TZ: "Asia/Jakarta"
+
+example=>
+
+version: '3.8'
+
+networks:
+   ichmnet:
+     name: ichm_network
+
+services:
+  apibot:
+    container_name: remedyTicketHandler
+    image: de/app-ichm-java-slim:1.0
+    restart: unless-stopped
+    volumes:
+      - .:/app
+      - /usr/share/zoneinfo/Asia/Jakarta:/usr/share/zoneinfo/Etc/UTC
+        #-/usr/share/zoneinfo/Asia/Jakarta:/etc/localtime
+        #networks:
+    #  - ichmnet
+    network_mode: host
+    environment:
+      TZ: "Asia/Jakarta"
